@@ -1,13 +1,12 @@
-from flask import Flask
-import json
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
   message = {"message": "Hello from Flask!"}
-  return json.dumps(message)
+  return jsonify(message)
 
 
 app.run(host='0.0.0.0', port=81)
