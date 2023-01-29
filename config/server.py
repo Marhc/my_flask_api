@@ -1,0 +1,7 @@
+import os
+
+LOCAL_PORT = os.environ.get("SERVER_PORT")
+
+REPLIT_PORT = 81
+
+SERVER_PORT = LOCAL_PORT or REPLIT_PORT
