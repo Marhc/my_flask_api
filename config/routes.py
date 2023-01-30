@@ -1,7 +1,7 @@
 
 from flask import Blueprint
 from config.api import base_url
-from routers.user import user_router
+from routers.users import user_router
 
 
 def set_routes(app):

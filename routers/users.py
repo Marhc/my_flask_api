@@ -1,11 +1,12 @@
 from flask import Blueprint
 
-from controllers.user import UserController
-from schemas.user import UserSchema
+from controllers.users import UserController
+from schemas.users import UserSchema
 from util.validation import validate
+from util.functions import filename
 
 
-resource = "users"
+resource_name = filename(__file__)
 
 item_url = '/<int:id>'
 
@@ -13,7 +14,7 @@ user_controller = UserController()
 
 user_schema = UserSchema()
 
-user_router = Blueprint(resource, __name__, url_prefix=resource)
+user_router = Blueprint(resource_name, __name__, url_prefix=resource_name)
 
 
 @user_router.route('', methods=['GET'])
