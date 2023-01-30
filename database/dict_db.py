@@ -1,3 +1,13 @@
 from replit import db
 
-db["users"] = db["users"] or []
+resources = [
+    'users'
+]
+
+try:
+    for resource in resources:
+        db[resource] = db.get(resource, [])
+except:
+    db = {}
+    for resource in resources:
+        db[resource] = []
