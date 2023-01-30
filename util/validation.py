@@ -3,6 +3,7 @@ from flask import request, jsonify
 from marshmallow import ValidationError
 from config.errors import error
 from config.schemas import app_schemas
+from database.dict_db import db
 
 
 def if_exists(func):
@@ -44,3 +45,14 @@ def resource(resource_name):
 
 def serialize(resource, data, many=False):
     return jsonify(app_schemas[resource](many=many).dump(data))
+
+
+def unique(resource_name):
+    def unique_validator(value):
+        existing = [d for d in db[resource_name]
+                    if d.get('email') == value]
+        if existing:
+            raise ValidationError('Email already exists')
+
+        return value
+    return unique_validator
